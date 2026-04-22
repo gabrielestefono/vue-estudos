@@ -4,10 +4,14 @@
  */
 
 const app = Vue.createApp({
+  /**
+   * @returns {DataOutput}
+   */
   data() {
     return {
       counter: 0,
       name: "",
+      confirmedName: "",
     };
   },
   methods: {
@@ -38,6 +42,18 @@ const app = Vue.createApp({
         return;
       }
       this.name = target.value + " " + defaultName;
+    },
+    /**
+     * @this {DataOutput}
+     */
+    submitForm() {
+      alert("Formulário enviado!");
+    },
+    /**
+     * @this {DataOutput}
+     */
+    confirmInput() {
+      this.confirmedName = this.name;
     },
   },
 });
