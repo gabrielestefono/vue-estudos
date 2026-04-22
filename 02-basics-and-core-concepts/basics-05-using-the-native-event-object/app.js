@@ -10,17 +10,18 @@ const app = Vue.createApp({
       name: "",
     };
   },
-  methods: {
+  computed: {
     /**
      * @this {DataOutput}
      */
-    outputFullName() {
-      console.log("Running again...");
+    fullName() {
       if (this.name === "") {
         return "";
       }
       return this.name + " " + "Estéfono";
     },
+  },
+  methods: {
     /**
      * @this {DataOutput}
      * @param {Event} event
