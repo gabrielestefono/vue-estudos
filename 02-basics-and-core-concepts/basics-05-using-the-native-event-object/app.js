@@ -13,10 +13,19 @@ const app = Vue.createApp({
   methods: {
     /**
      * @this {DataOutput}
-     * @param {Event} event
-     * @param {string} lastName
      */
-    setName(event, lastName) {
+    outputFullName() {
+      console.log("Running again...");
+      if (this.name === "") {
+        return "";
+      }
+      return this.name + " " + "Estéfono";
+    },
+    /**
+     * @this {DataOutput}
+     * @param {Event} event
+     */
+    setName(event) {
       const target = event.target;
       if (!(target instanceof HTMLInputElement)) {
         return;
