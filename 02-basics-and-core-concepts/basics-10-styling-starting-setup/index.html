@@ -20,23 +20,17 @@
       <div
         class="demo"
         @click="boxSelected('A')"
-        :style="{
-        borderColor: boxASelected ? 'red' : '#ccc'
-      }"
+        :class="{ active: boxASelected }"
       ></div>
       <div
         class="demo"
         @click="boxSelected('B')"
-        :style="{
-        borderColor: boxBSelected ? 'red' : '#ccc'
-      }"
+        :class="{ active: boxBSelected }"
       ></div>
       <div
         class="demo"
         @click="boxSelected('C')"
-        :style="{
-        borderColor: boxCSelected ? 'red' : '#ccc'
-      }"
+        :class="{ active: boxCSelected }"
       ></div>
     </section>
   </body>
