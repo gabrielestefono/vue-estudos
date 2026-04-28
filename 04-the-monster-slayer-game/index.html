@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,24 +20,54 @@
       <section id="monster" class="container">
         <h2>Monster Health</h2>
         <div class="healthbar">
-          <div class="healthbar__value"></div>
+          <div class="healthbar__value" v-bind:style="monsterBarStyles"></div>
         </div>
       </section>
       <section id="player" class="container">
         <h2>Your Health</h2>
         <div class="healthbar">
-          <div class="healthbar__value"></div>
+          <div class="healthbar__value" v-bind:style="playerBarStyles"></div>
         </div>
       </section>
-      <section id="controls">
-        <button>ATTACK</button>
-        <button>SPECIAL ATTACK</button>
-        <button>HEAL</button>
-        <button>SURRENDER</button>
+      <section class="container" v-if="winner">
+        <h2>Game Over</h2>
+        <h3 v-if="winner === 'monster'">You Lost!</h3>
+        <h3 v-else-if="winner === 'player'">You Won!</h3>
+        <h3 v-else>It's a Draw!</h3>
+        <button v-on:click="startNewGame">Start new Game</button>
+      </section>
+      <section id="controls" v-else>
+        <button v-on:click="attackMonster">ATTACK</button>
+        <button
+          v-on:click="specialAttackMonster"
+          v-bind:disabled="!mayUseSpecialAttack"
+        >
+          SPECIAL ATTACK
+        </button>
+        <button v-on:click="healPlayer">HEAL</button>
+        <button v-on:click="surrender">SURRENDER</button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul>
+          <li v-for="logMessage in logMessages" :key="logMessage.actionValue">
+            <span :class="{
+                'log--player': logMessage.actionBy === 'player',
+                'log--monster': logMessage.actionBy === 'monster',
+              }">{{ logMessage.actionBy === "player" ? "Player" : "Monster" }}</span>
+            <span
+              >{{ logMessage.actionType === "attack" ? 
+              " attacks for " : 
+              " heals himself for " }}</span
+            >
+            <span
+              :class="{
+                'log--damage': logMessage.actionType === 'attack',
+                'log--heal': logMessage.actionType === 'heal',
+              }"
+            >{{ logMessage.actionValue }}</span>
+          </li>
+        </ul>
       </section>
     </div>
   </body>
