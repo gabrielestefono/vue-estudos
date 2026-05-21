@@ -3,7 +3,7 @@
  * @import { DataOutput } from './types/app';
  */
 
-Vue.createApp({
+const app = Vue.createApp({
   /**
    *
    * @returns {DataOutput}
@@ -30,7 +30,46 @@ Vue.createApp({
       this.message = this.$refs.userText.value;
     },
   },
-}).mount("#app");
+  beforeCreate() {
+    debugger;
+    console.log("beforeCreate()");
+  },
+  created() {
+    debugger;
+    console.log("created()");
+  },
+  beforeMount() {
+    debugger;
+    console.log("beforeMount()");
+  },
+  mounted() {
+    debugger;
+    console.log("mounted()");
+  },
+  beforeUpdate() {
+    debugger;
+    console.log("beforeUpdate()");
+  },
+  updated() {
+    debugger;
+    console.log("updated()");
+  },
+  beforeUnmount() {
+    debugger;
+    console.log("beforeUnmount()");
+  },
+  unmounted() {
+    debugger;
+    console.log("unmounted()");
+  }
+});
+
+app.mount("#app");
+
+setTimeout(() => {
+  app.unmount();
+}, 3000);
+
 
 Vue.createApp({
   data() {
